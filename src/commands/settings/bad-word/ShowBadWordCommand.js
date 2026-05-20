@@ -1,0 +1,46 @@
+import ErrorEmbed from '../../../formatting/embeds/ErrorEmbed.js';
+import {ActionRowBuilder, ButtonBuilder, ButtonStyle, MessageFlags} from 'discord.js';
+import CompletingBadWordCommand from './CompletingBadWordCommand.js';
+import BadWord from '../../../database/BadWord.js';
+
+export default class ShowBadWordCommand extends CompletingBadWordCommand {
+    async execute(interaction) {
+        const badWord = /** @type {?BadWord} */
+            await BadWord.getByID(interaction.options.getInteger('id', true), interaction.guildId);
+
+        if (!badWord) {
+            await interaction.reply(ErrorEmbed.message('There is no bad-word with this id.'));
+            return;
+        }
+
+        await interaction.reply({
+            flags: MessageFlags.Ephemeral,
+            embeds: [badWord.embed()],
+            components: [
+                new ActionRowBuilder()
+                    .addComponents(
+                        // eslint-disable-next-line jsdoc/reject-any-type
+                        /** @type {*} */
+                        new ButtonBuilder()
+                            .setLabel('Remove')
+                            .setStyle(ButtonStyle.Danger)
+                            .setCustomId(`badword:remove:${badWord.id}`),
+                        // eslint-disable-next-line jsdoc/reject-any-type
+                        /** @type {*} */
+                        new ButtonBuilder()
+                            .setLabel('Edit')
+                            .setStyle(ButtonStyle.Secondary)
+                            .setCustomId(`badword:edit:${badWord.id}`)
+                    )
+            ]
+        });
+    }
+
+    getDescription() {
+        return 'View a single bad-word';
+    }
+
+    getName() {
+        return 'view';
+    }
+}

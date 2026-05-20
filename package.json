@@ -1,0 +1,57 @@
+{
+  "name": "robobot",
+  "version": "3.6.2",
+  "description": "Discord Bot for the Aternos Discord server",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aternosorg/robobot.git"
+  },
+  "author": "Julian Vennen <julian@aternos.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aternosorg/robobot/issues"
+  },
+  "homepage": "https://github.com/aternosorg/robobot#readme",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "@google-cloud/logging": "^11.2.1",
+    "@google-cloud/vision": "^5.3.3",
+    "@googleapis/youtube": "^31.0.0",
+    "@napi-rs/canvas": "^1.0.0",
+    "diff": "^8.0.2",
+    "discord-api-types": "^0.38.45",
+    "discord.js": "^14.26.2",
+    "fuse.js": "^7.0.0",
+    "got": "^15.0.1",
+    "mysql2": "^3.9.8",
+    "string-similarity": "^4.0.4",
+    "turndown": "^7.1.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@eslint/json": "^1.2.0",
+    "@types/node": "^22.5.2",
+    "@types/turndown": "^5.0.6",
+    "eslint": "^10.2.0",
+    "eslint-plugin-jsdoc": "^62.9.0",
+    "globals": "^17.4.0",
+    "nodemon": "^3.1.10"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix"
+    ],
+    "*.json": [
+      "eslint --fix"
+    ]
+  }
+}

@@ -1,0 +1,105 @@
+import {PermissionFlagsBits, PermissionsBitField,} from 'discord.js';
+import MemberWrapper from '../../discord/MemberWrapper.js';
+import colors from '../../util/colors.js';
+import {MODAL_TITLE_LIMIT} from '../../util/apiLimits.js';
+import ErrorEmbed from '../../formatting/embeds/ErrorEmbed.js';
+import UserActionEmbed from '../../formatting/embeds/UserActionEmbed.js';
+import config from '../../bot/Config.js';
+import {deferReplyOnce, replyOrEdit} from '../../util/interaction.js';
+import UserCommand from './UserCommand.js';
+import BetterModalBuilder from "../../formatting/components/BetterModalBuilder.js";
+import ReasonInput from "../../formatting/components/ReasonInput.js";
+import CommentInput from "../../formatting/components/CommentInput.js";
+
+export default class UnmuteCommand extends UserCommand {
+    getDefaultMemberPermissions() {
+        return new PermissionsBitField()
+            .add(PermissionFlagsBits.ModerateMembers);
+    }
+
+    getRequiredBotPermissions() {
+        return new PermissionsBitField()
+            .add(PermissionFlagsBits.ModerateMembers);
+    }
+
+    async execute(interaction) {
+        const member = new MemberWrapper(interaction.options.getUser('user', true), interaction.guild);
+        const reason = interaction.options.getString('reason');
+        const comment = interaction.options.getString('comment');
+        await this.unmute(interaction, member, reason, comment, interaction.user);
+    }
+
+    /**
+     *
+     * @param {import('discord.js').Interaction} interaction
+     * @param {?MemberWrapper} member
+     * @param {?string} reason
+     * @param {?string} comment
+     * @param {import('discord.js').User} moderator
+     * @returns {Promise<void>}
+     */
+    async unmute(interaction, member, reason, comment, moderator) {
+        if (!member) {
+            return;
+        }
+        await deferReplyOnce(interaction);
+
+        if (!await member.isMuted()) {
+            await interaction.reply(ErrorEmbed.message('This member isn\'t muted!'));
+            return;
+        }
+
+        reason = reason || 'No reason provided';
+        await member.unmute(reason, comment, moderator);
+        await replyOrEdit(
+            interaction,
+            new UserActionEmbed(member.user, reason, 'unmuted', colors.GREEN, config.data.emoji.mute)
+                .toMessage());
+    }
+
+    async executeButton(interaction) {
+        await this.promptForData(interaction, await MemberWrapper.getMemberFromCustomId(interaction));
+    }
+
+    /**
+     * @param {import('discord.js').Interaction} interaction
+     * @param {?MemberWrapper} member
+     * @returns {Promise<void>}
+     */
+    async promptForData(interaction, member) {
+        if (!member) {
+            return;
+        }
+
+        await interaction.showModal(new BetterModalBuilder()
+            .setTitle(`Unmute ${await member.displayName()}`.substring(0, MODAL_TITLE_LIMIT))
+            .setCustomId(`unmute:${member.user.id}`)
+            .addLabelComponent(new ReasonInput(this))
+            .addLabelComponent(new CommentInput(this))
+        );
+    }
+
+    async executeModal(interaction) {
+        let reason, comment;
+        for (let label of interaction.components) {
+            switch (label.component.customId) {
+                case 'reason':
+                    reason = label.component.value || 'No reason provided';
+                    break;
+                case 'comment':
+                    comment = label.component.value || null;
+                    break;
+            }
+        }
+
+        await this.unmute(interaction, await MemberWrapper.getMemberFromCustomId(interaction), reason, comment, interaction.user);
+    }
+
+    getDescription() {
+        return 'Unmute a user';
+    }
+
+    getName() {
+        return 'unmute';
+    }
+}
