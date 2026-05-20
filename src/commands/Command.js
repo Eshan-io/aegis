@@ -17,8 +17,8 @@ export default class Command extends ExecutableCommand {
      * Permissions that members need to execute this command by default.
      * Null: no permissions required. Empty bitfield: disabled by default
      *
-     * For slash commands this is not checked by RoboBot and is only used to register commands on Discord
-     * For context menus, buttons and other interactions RoboBot emulate Discord's permission system
+     * For slash commands this is not checked by Aegis and is only used to register commands on Discord
+     * For context menus, buttons and other interactions Aegis emulate Discord's permission system
      * @returns {?import('discord.js').PermissionsBitField}
      */
     getDefaultMemberPermissions() {

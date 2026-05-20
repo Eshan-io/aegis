@@ -1,6 +1,6 @@
-# RoboBot
+# Aegis
 
-RoboBot is a Discord moderation bot focused on fast slash commands, clean moderation workflows, and practical server management.
+Aegis is a Discord moderation bot focused on fast slash commands, clean moderation workflows, and practical server management.
 
 It uses modern Discord interactions including slash commands, buttons, select menus, modals, and context-aware moderation flows.
 
@@ -113,7 +113,7 @@ It uses modern Discord interactions including slash commands, buttons, select me
 3. Enable the required gateway intents:
    - `SERVER MEMBERS INTENT`
    - `MESSAGE CONTENT INTENT`
-4. Create a MySQL or MariaDB database for RoboBot.
+4. Create a MySQL or MariaDB database for Aegis.
 5. Configure the bot using [CONFIGURATION.md](./CONFIGURATION.md).
 6. Install dependencies with `npm ci`.
 7. Start the bot with `npm start`.
@@ -147,17 +147,17 @@ Example:
 
 ```bash
 docker run \
-  -e ROBOBOT_AUTH_TOKEN="<discord-auth-token>" \
-  -e ROBOBOT_DATABASE_HOST="<database-host>" \
-  -e ROBOBOT_DATABASE_PASSWORD="<database-password>" \
-  robobot
+  -e AEGIS_AUTH_TOKEN="<discord-auth-token>" \
+  -e AEGIS_DATABASE_HOST="<database-host>" \
+  -e AEGIS_DATABASE_PASSWORD="<database-password>" \
+  aegis
 ```
 
-If you publish your own image, replace `robobot` with your image name.
+If you publish your own image, replace `aegis` with your image name.
 
 ## Configuration Notes
 
-RoboBot supports:
+Aegis supports:
 
 - `config.json`
 - environment variables

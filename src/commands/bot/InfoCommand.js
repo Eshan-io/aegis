@@ -16,8 +16,8 @@ import BetterButtonBuilder from '../../formatting/embeds/BetterButtonBuilder.js'
 import MessageBuilder from '../../formatting/MessageBuilder.js';
 
 export const DISCORD_INVITE_LINK = 'https://discord.gg/zYYhgPtmxw';
-export const GITHUB_REPOSITORY = 'https://github.com/aternosorg/robobot';
-export const PRIVACY_POLICY = 'https://aternos.gmbh/en/robobot/privacy';
+export const GITHUB_REPOSITORY = 'https://github.com/Eshan-io/aegis';
+export const PRIVACY_POLICY = 'https://github.com/Eshan-io/aegis';
 
 export const CLIENT_ID = '790967448111153153';
 export const SCOPES = ['bot', 'applications.commands'];
@@ -56,8 +56,8 @@ export const COMMIT = await getGitCommit();
  * @returns {Promise<?string>}
  */
 async function getGitCommit() {
-    if (process.env.ROBOBOT_COMMIT_HASH) {
-        return /** @type {string} */ process.env.ROBOBOT_COMMIT_HASH;
+    if (process.env.AEGIS_COMMIT_HASH) {
+        return /** @type {string} */ process.env.AEGIS_COMMIT_HASH;
     }
 
     try {
@@ -82,12 +82,10 @@ export default class InfoCommand extends Command {
         ];
 
         const container = new MessageBuilder()
-            .heading('RoboBot by Aternos', HeadingLevel.Two)
+            .heading('Aegis', HeadingLevel.Two)
             .newLine()
-            .text('RoboBot is an open source moderation bot with advanced features developed by')
+            .text('Aegis is an open source moderation bot with advanced features.')
             .space()
-            .link('Aternos', 'https://aternos.org/', 'Aternos Homepage')
-            .period().space()
             .text('It uses modern Discord features like slash-commands, context-menus, timeouts, buttons,')
             .space().text('select-menus and modals and offers everything you need for moderation.')
             .space().text('Including bad-words and auto-responses with support for regex,')
@@ -95,9 +93,9 @@ export default class InfoCommand extends Command {
             .space().text('various other forms of automatic moderation filters.')
             .separator(false)
             .text('If you want to suggest something or need help you can join our')
-            .space().link('Discord', DISCORD_INVITE_LINK, 'Join the RoboBot Discord')
+            .space().link('Discord', DISCORD_INVITE_LINK, 'Join the Aegis Discord')
             .space().text('or create an issue on our')
-            .space().link('GitHub repository', GITHUB_REPOSITORY, 'Open the RoboBot repository on GitHub')
+            .space().link('GitHub repository', GITHUB_REPOSITORY, 'Open the Aegis repository on GitHub')
             .period()
             .separator()
             .pairIf(VERSION, 'Version', VERSION)
@@ -120,7 +118,7 @@ export default class InfoCommand extends Command {
     }
 
     getDescription() {
-        return 'Show general information about RoboBot';
+        return 'Show general information about Aegis';
     }
 
     getName() {

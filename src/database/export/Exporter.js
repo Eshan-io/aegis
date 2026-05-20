@@ -15,7 +15,7 @@ export default class Exporter {
     /**
      * @type {string}
      */
-    dataType = 'robobot-1.0.0';
+    dataType = 'aegis-1.0.0';
 
     /**
      * @type {GuildSettingsJSON}

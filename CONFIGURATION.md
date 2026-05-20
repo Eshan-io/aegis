@@ -1,67 +1,67 @@
 # Configuration
-RoboBot offers two different ways to configure it, a config file or environment variables. To use the config file
+Aegis offers two different ways to configure it, a config file or environment variables. To use the config file
 just copy the [minimal configuration example](#minimal-configuration-file) to a new file called config.json and modify the options in it.
-If you chose to use environment variables then you first need to set the environment variable `ROBOBOT_USE_ENV`.
+If you chose to use environment variables then you first need to set the environment variable `AEGIS_USE_ENV`.
 
 Environment variables use `SCREAMING_SNAKE_CASE`, the configuration file uses `camelCase`.
 
-If both a config file exists and the `ROBOBOT_USE_ENV` variable is set RoboBot will ignore the config.json file.
+If both a config file exists and the `AEGIS_USE_ENV` variable is set Aegis will ignore the config.json file.
 
 ## Auth Token (required)
 Discord bot authentication token, can be generated in the [Developer Portal](https://discordapp.com/developers/applications/)
 
 | type   | config file | environment         |
 |--------|-------------|---------------------|
-| string | `authToken` | `ROBOBOT_AUTH_TOKEN` |
+| string | `authToken` | `AEGIS_AUTH_TOKEN` |
 
 ## Database (required)
 MySQL/MariaDB access credentials. Other SQL dialects or Databases are not supported. If you're using a config file,
 you can easily add any additional options accepted by [mysql2](https://www.npmjs.com/package/mysql2). To do this with environment variables, you need
-to encode the entire database configuration JSON object as base64 and set it in the environment variable `ROBOBOT_DATABASE`.
+to encode the entire database configuration JSON object as base64 and set it in the environment variable `AEGIS_DATABASE`.
 
 ### Host
 Database hostname or IP
 
 | type   | config file     | environment            |
 |--------|-----------------|------------------------|
-| string | `database.host` | `ROBOBOT_DATABASE_HOST` |
+| string | `database.host` | `AEGIS_DATABASE_HOST` |
 
 ### User
-Database username (Default: `robobot`)
+Database username (Default: `aegis`)
 
 | type   | config file     | environment            |
 |--------|-----------------|------------------------|
-| string | `database.user` | `ROBOBOT_DATABASE_USER` |
+| string | `database.user` | `AEGIS_DATABASE_USER` |
 
 ### Password
 Database password
 
 | type   | config file         | environment                |
 |--------|---------------------|----------------------------|
-| string | `database.password` | `ROBOBOT_DATABASE_PASSWORD` |
+| string | `database.password` | `AEGIS_DATABASE_PASSWORD` |
 
 ### Database
-Database name (Default: `robobot`)
+Database name (Default: `aegis`)
 
 | type   | config file         | environment                |
 |--------|---------------------|----------------------------|
-| string | `database.database` | `ROBOBOT_DATABASE_DATABASE` |
+| string | `database.database` | `AEGIS_DATABASE_DATABASE` |
 
 ### Port
 Database port (Default: `3306`)
 
 | type   | config file     | environment            |
 |--------|-----------------|------------------------|
-| number | `database.port` | `ROBOBOT_DATABASE_PORT` |
+| number | `database.port` | `AEGIS_DATABASE_PORT` |
 
 ### Database JSON Example
 ```json
 {
   "database": {
     "host": "localhost",
-    "user": "robobot",
+    "user": "aegis",
     "password": "password",
-    "database": "robobot",
+    "database": "aegis",
     "port": 3306
   }
 }
@@ -72,7 +72,7 @@ Google cloud API Key. Currently used for the YouTube v3 API (`/video` and `/play
 
 | type   | config file    | environment             |
 |--------|----------------|-------------------------|
-| string | `googleApiKey` | `ROBOBOT_GOOGLE_API_KEY` |
+| string | `googleApiKey` | `AEGIS_GOOGLE_API_KEY` |
 
 ## Google Cloud (optional)
 Configuration for Google cloud features
@@ -86,17 +86,17 @@ These credentials are used for the following apis if you enabled them in the con
 
 ### Base64 Encoded
 If you're using environment variables it is recommended to base64 encode the credentials JSON object and set them in the
-environment variable `ROBOBOT_GOOGLE_CLOUD_CREDENTIALS`. If this variable is set RoboBot will ignore the other variables.
+environment variable `AEGIS_GOOGLE_CLOUD_CREDENTIALS`. If this variable is set Aegis will ignore the other variables.
 
 #### Client Email
 | type   | config file                            | environment                                    |
 |--------|----------------------------------------|------------------------------------------------|
-| string | `googleCloud.credentials.client_email` | `ROBOBOT_GOOGLE_CLOUD_CREDENTIALS_CLIENT_EMAIL` |
+| string | `googleCloud.credentials.client_email` | `AEGIS_GOOGLE_CLOUD_CREDENTIALS_CLIENT_EMAIL` |
 
 #### Private Key
 | type   | config file                           | environment                                   |
 |--------|---------------------------------------|-----------------------------------------------|
-| string | `googleCloud.credentials.private_key` | `ROBOBOT_GOOGLE_CLOUD_CREDENTIALS_PRIVATE_KEY` |
+| string | `googleCloud.credentials.private_key` | `AEGIS_GOOGLE_CLOUD_CREDENTIALS_PRIVATE_KEY` |
 
 #### Credentials JSON Example
 ```json
@@ -117,17 +117,17 @@ If you don't want to use Google cloud logging just ignore this.
 #### Enabled
 | type    | config file                   | environment                           |
 |---------|-------------------------------|---------------------------------------|
-| boolean | `googleCloud.logging.enabled` | `ROBOBOT_GOOGLE_CLOUD_LOGGING_ENABLED` |
+| boolean | `googleCloud.logging.enabled` | `AEGIS_GOOGLE_CLOUD_LOGGING_ENABLED` |
 
 #### Project ID
 | type   | config file                     | environment                              |
 |--------|---------------------------------|------------------------------------------|
-| string | `googleCloud.logging.projectId` | `ROBOBOT_GOOGLE_CLOUD_LOGGING_PROJECT_ID` |
+| string | `googleCloud.logging.projectId` | `AEGIS_GOOGLE_CLOUD_LOGGING_PROJECT_ID` |
 
 #### Log Name
 | type   | config file                   | environment                            |
 |--------|-------------------------------|----------------------------------------|
-| string | `googleCloud.logging.logName` | `ROBOBOT_GOOGLE_CLOUD_LOGGING_LOG_NAME` |
+| string | `googleCloud.logging.logName` | `AEGIS_GOOGLE_CLOUD_LOGGING_LOG_NAME` |
 
 #### Logging JSON Example
 ```json
@@ -136,7 +136,7 @@ If you don't want to use Google cloud logging just ignore this.
     "logging": {
       "enabled": true,
       "projectId": "example-project",
-      "logName": "robobot"
+      "logName": "aegis"
     }
   }
 }
@@ -148,7 +148,7 @@ Configuration for using the cloud vision API to detect inappropriate images.
 #### Enabled
 | type    | config file                  | environment                          |
 |---------|------------------------------|--------------------------------------|
-| boolean | `googleCloud.vision.enabled` | `ROBOBOT_GOOGLE_CLOUD_VISION_ENABLED` |
+| boolean | `googleCloud.vision.enabled` | `AEGIS_GOOGLE_CLOUD_VISION_ENABLED` |
 
 #### Vision JSON Example
 ```json
@@ -172,7 +172,7 @@ Configuration for using the cloud vision API to detect inappropriate images.
     "logging": {
       "enabled": true,
       "projectId": "example-project",
-      "logName": "robobot"
+      "logName": "aegis"
     },
     "vision": {
       "enabled": true
@@ -186,7 +186,7 @@ Array of server ids that are allowed to use special features (e.g. `/purge-invit
 
 | type     | config file        | environment                |
 |----------|--------------------|----------------------------|
-| string[] | `featureWhitelist` | `ROBOBOT_FEATURE_WHITELIST` |
+| string[] | `featureWhitelist` | `AEGIS_FEATURE_WHITELIST` |
 
 ### Feature Whitelist JSON Example
 ```json
@@ -230,7 +230,7 @@ Currently, the following emojis are used:
 - userId
 - userJoined
 
-As environment variables these would follow the standard of `ROBOBOT_EMOJI_LAST_PAGE`.
+As environment variables these would follow the standard of `AEGIS_EMOJI_LAST_PAGE`.
 
 ### Emoji JSON Example
 ```json
@@ -271,9 +271,9 @@ For details on the configuration options see above.
   "authToken":"AUTH TOKEN",
   "database": {
       "host": "localhost",
-      "user": "robobot",
+      "user": "aegis",
       "password": "password",
-      "database": "robobot"
+      "database": "aegis"
   },
   "googleApiKey": "google api key",
   "googleCloud": {
@@ -284,7 +284,7 @@ For details on the configuration options see above.
     "logging": {
       "enabled": true,
       "projectId": "example-project",
-      "logName": "robobot"
+      "logName": "aegis"
     },
     "vision": {
       "enabled": true

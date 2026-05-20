@@ -12,7 +12,7 @@ import EmbedWrapper from '../../formatting/embeds/EmbedWrapper.js';
 const SETUP_SECTIONS = {
     overview: {
         title: 'Setup Guide',
-        description: 'Use this guide to get RoboBot ready in a new server.',
+        description: 'Use this guide to get Aegis ready in a new server.',
         fields: [
             {
                 name: '1. Logs',

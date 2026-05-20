@@ -32,15 +32,15 @@ export default class ExportCommand extends Command {
         await interaction.editReply({
             files: [
                 new AttachmentBuilder(data, {
-                    name: `RoboBot-data-${interaction.guild.id}.json${gzip ? '.gz' : ''}`,
-                    description: 'RoboBot data for this guild. Use /import to import on another guild or RoboBot instance'
+                    name: `Aegis-data-${interaction.guild.id}.json${gzip ? '.gz' : ''}`,
+                    description: 'Aegis data for this guild. Use /import to import on another guild or compatible instance'
                 }),
             ]
         });
     }
 
     getDescription() {
-        return 'Export all data RoboBot stores about this guild';
+        return 'Export all data Aegis stores about this guild';
     }
 
     getName() {

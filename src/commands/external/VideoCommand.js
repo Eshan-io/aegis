@@ -34,7 +34,7 @@ export default class VideoCommand extends Command {
     async execute(interaction) {
         if (!config.data.googleApiKey) {
             return await interaction.reply(ErrorEmbed
-                .message('There is no google API key configured for this instance of RoboBot!'));
+                .message('There is no google API key configured for this instance of Aegis!'));
         }
 
         const playlist = (await GuildSettings.get(interaction.guild.id)).getPlaylist();

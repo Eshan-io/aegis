@@ -79,7 +79,7 @@ export default class HelpCommand extends Command {
     buildOverviewMessage() {
         const embed = new EmbedWrapper()
             .setColor(colors.GREEN)
-            .setTitle('RoboBot Help')
+            .setTitle('Aegis Help')
             .setDescription('Pick a category below or run `/help command:<name>` for a specific command.');
 
         for (const category of HELP_CATEGORIES) {
@@ -167,7 +167,7 @@ export default class HelpCommand extends Command {
     }
 
     getDescription() {
-        return 'Browse RoboBot commands and usage';
+        return 'Browse Aegis commands and usage';
     }
 
     getName() {

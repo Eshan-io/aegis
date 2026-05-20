@@ -14,7 +14,7 @@ import {asyncFilter} from '../../util/util.js';
  * @import {Exporter} from './Exporter.js';
  */
 
-export default class RoboBotImporter extends Importer {
+export default class AegisImporter extends Importer {
 
     /**
      * @type {Client}
@@ -33,7 +33,7 @@ export default class RoboBotImporter extends Importer {
 
     /**
      * @param {import('discord.js').Snowflake} guildID
-     * @param {Exporter} data JSON exported data (robobot-1.0.0)
+     * @param {Exporter} data JSON exported data (aegis-1.0.0)
      */
     constructor(guildID, data) {
         super();

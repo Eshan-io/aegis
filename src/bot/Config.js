@@ -112,11 +112,11 @@ export class Config {
         /** @type {DatabaseConfig} */
         let database = await this.#get('database', {}, this.#parseBase64Json);
         database.host ??= await this.#get(['database', 'host']);
-        database.user ??= await this.#get(['database', 'user'], "robobot");
+        database.user ??= await this.#get(['database', 'user'], "aegis");
         database.password ??= await this.#get(['database', 'password']);
         database.database ??= await this.#get(['database', 'database']);
-        database.database ??= process.env.ROBOBOT_DATABASE_NAME;
-        database.database ??= "robobot";
+        database.database ??= process.env.AEGIS_DATABASE_NAME;
+        database.database ??= "aegis";
         database.port ??= await this.#get(['database', 'port'], 3306, parseInt);
         if (typeof database !== 'object' || !database.host) {
             await logger.error('No valid database host provided.\nConfigure database as described in the CONFIGURATION.md');
@@ -278,24 +278,24 @@ export class Config {
     }
 
     /**
-     * Prefer environment variables when explicitly enabled or when a RoboBot env-based config is present.
+     * Prefer environment variables when explicitly enabled or when an Aegis env-based config is present.
      * @returns {boolean}
      */
     #shouldUseEnv() {
         return !!(
-            process.env.ROBOBOT_USE_ENV ||
-            process.env.ROBOBOT_AUTH_TOKEN ||
-            process.env.ROBOBOT_DATABASE
+            process.env.AEGIS_USE_ENV ||
+            process.env.AEGIS_AUTH_TOKEN ||
+            process.env.AEGIS_DATABASE
         );
     }
 
     /**
-     * Convert config key parts to an environment variable key, e.g. ['googleCloud', 'credentials', 'client_email'] -> 'ROBOBOT_GOOGLE_CLOUD_CREDENTIALS_CLIENT_EMAIL'
+     * Convert config key parts to an environment variable key, e.g. ['googleCloud', 'credentials', 'client_email'] -> 'AEGIS_GOOGLE_CLOUD_CREDENTIALS_CLIENT_EMAIL'
      * @param {string[]} keyParts
      * @returns {string}
      */
     #getEnvKey(keyParts) {
-        let envKeyParts = ["ROBOBOT"];
+        let envKeyParts = ["AEGIS"];
 
         for (let keyPart of keyParts) {
             let key = "";

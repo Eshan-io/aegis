@@ -1,7 +1,7 @@
 {
-  "name": "robobot",
+  "name": "aegis",
   "version": "3.6.2",
-  "description": "Discord Bot for the Aternos Discord server",
+  "description": "Aegis Discord moderation bot",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aternosorg/robobot.git"
+    "url": "git+https://github.com/Eshan-io/aegis.git"
   },
   "author": "Julian Vennen <julian@aternos.org>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/aternosorg/robobot/issues"
+    "url": "https://github.com/Eshan-io/aegis/issues"
   },
-  "homepage": "https://github.com/aternosorg/robobot#readme",
+  "homepage": "https://github.com/Eshan-io/aegis#readme",
   "engines": {
     "node": ">=22.0.0"
   },

@@ -39,7 +39,7 @@ export default class PlaylistCommand extends SubCommand {
 
         if (!config.data.googleApiKey) {
             return await interaction.editReply(ErrorEmbed
-                .message('There is no google API key configured for this instance of RoboBot!'));
+                .message('There is no google API key configured for this instance of Aegis!'));
         }
 
         const id = this.getPlaylistId(option);

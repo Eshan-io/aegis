@@ -4,7 +4,7 @@ import got from 'got';
 import {promisify} from 'util';
 import {gunzip as gunzipCb} from 'zlib';
 import VortexImporter from '../../database/export/VortexImporter.js';
-import RoboBotImporter from '../../database/export/RoboBotImporter.js';
+import AegisImporter from '../../database/export/AegisImporter.js';
 
 /**
  * @import Importer from '../../database/export/Importer.js';
@@ -24,7 +24,7 @@ export default class ImportCommand extends Command {
             option
                 .setName('data')
                 .setRequired(true)
-                .setDescription('Data exported from RoboBot or Vortex')
+                .setDescription('Data exported from Aegis or Vortex')
         );
         return builder;
     }
@@ -66,7 +66,7 @@ export default class ImportCommand extends Command {
         const importer = this.getImporter(data, interaction);
 
         if (!importer) {
-            await interaction.editReply('Unknown data type. Only Vortex and RoboBot data are currently supported. ' +
+            await interaction.editReply('Unknown data type. Only Vortex and Aegis data are currently supported. ' +
                 'Feel free to create an issue on our GitHub if you want to suggest another type.');
             return;
         }
@@ -76,7 +76,7 @@ export default class ImportCommand extends Command {
         }
         catch (e) {
             if (e instanceof TypeError) {
-                await interaction.editReply('Invalid Data! Only Vortex and RoboBot data are currently supported. ' +
+                await interaction.editReply('Invalid Data! Only Vortex and Aegis data are currently supported. ' +
                     'Feel free to create an issue on our GitHub if you want to suggest another type.');
                 return;
             }
@@ -98,14 +98,14 @@ export default class ImportCommand extends Command {
     getImporter(data, interaction) {
         if (!data.dataType)
             return new VortexImporter(interaction.guild.id, data);
-        if (data.dataType.toLowerCase().startsWith('robobot-1.'))
-            return new RoboBotImporter(interaction.guild.id, data);
+        if (data.dataType.toLowerCase().startsWith('aegis-1.'))
+            return new AegisImporter(interaction.guild.id, data);
 
         return null;
     }
 
     getDescription() {
-        return 'Import data exported by RoboBot or Vortex';
+        return 'Import data exported by Aegis or Vortex';
     }
 
     getName() {
